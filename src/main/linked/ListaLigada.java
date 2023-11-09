@@ -7,19 +7,46 @@ public class ListaLigada implements EstruturaElementar{
     private No cabeca;
 
     public ListaLigada() {
-
+        cabeca = null;
     }
 
     @Override
     public boolean buscaElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaElemento'");
-    }
+        No memoria = cabeca;
+        boolean bool = false;
+        while(true){
+            if (valor == memoria.getValor()){
+                    bool = true;
+                    return bool;
+                }
+                else if(memoria.getProximo() == null){
+                    return bool;
+                }
+                    else{
+                    No proximo = memoria.getProximo();
+                    memoria = proximo;
+                }
+                    
+            }     
+        }
+        
+    
 
     @Override
     public int buscaIndice(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaIndice'");
+        int contador = 0;
+        No memoria = cabeca;
+        while (true) {
+            if (valor == contador) {
+                int V = memoria.getValor();
+                return V;
+            }
+            else{
+                No proximo = memoria.getProximo();
+                memoria = proximo;
+                contador++;
+            }
+        }
     }
 
     @Override
@@ -60,16 +87,38 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void insereInicio(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereInicio'");
+        if(this.cabeca == null){
+            this.cabeca = new No(valor);
+        }
+        else{
+            No n = new No(valor);
+            n.setProximo(this.cabeca);
+            cabeca = n;
+        }
     }
 
     @Override
     public void insereFim(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereFim'");
+        No memoria = this.cabeca;
+        if(cabeca.getProximo() != null){
+        while (true) {            
+            if(memoria.getProximo() == null){
+                No n = new No(valor);
+                memoria.setProximo(n);
+                return;
+            }
+            else{
+                No proximo = memoria.getProximo();
+                memoria = proximo;
+            }
+        }
     }
-
+    else{
+        return;
+    }
+        
+    }
+    
     @Override
     public void remove(int valor) {
         // TODO Auto-generated method stub
